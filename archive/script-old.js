@@ -34,7 +34,7 @@ let renderMovies = movies => {
           <div class="card-body">
             <span class="badge badge-secondary">${movie.Year}</span>
             <h5 class="card-title">${movie.Title}</h5>
-            <button class="btn btn-primary add-movie" onclick="saveToWatchlist(${movie.imdbID.toString()})" >Add</a>
+            <button class="btn btn-primary add-movie" onclick="saveToWatchlist('${movie.imdbID.toString()}')" >Add</a>
           </div>
         </div>
       </div>

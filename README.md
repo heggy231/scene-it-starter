@@ -37,3 +37,55 @@ https://codepen.io/heggy231/pen/jOypQqp
 </div>
 ```
 
+```js
+      <img src="${
+                (!item.imageURL) ? './no_image.png'
+                : item.imageURL && window.addEventListener("error", e => {return e;}, true) && (e.type === "error" && e.target === img) ? './no_image.png'
+                : item.imageURL
+              }"
+              class="card-img-top" alt=${item.title}>
+
+
+                            <img src="${fallBackImg(item.imageURL)}"
+              class="card-img-top" alt=${item.title}>
+```
+
+```js
+const appDiv = document.getElementById('app');
+appDiv.innerHTML = `<h1>What if an image fails to load?</h1>`;
+
+
+const container = document.createElement('div');
+container.className = "container";
+appDiv.appendChild(container);
+
+
+const placeholder = document.createElement('div');
+placeholder.className = "placeholder";
+placeholder.innerText = "Image not found";
+
+
+const goodURL = "https://placekitten.com/g/300/200";
+const badURL = "https://www.placekitten.com/g/300/200";
+
+const image = document.createElement('img');
+// image.src = goodURL;
+// toggle this code to see how the placeholder works in the UI
+image.src = badURL;
+
+image.onload = () => {
+  container.appendChild(image)
+}
+
+image.onerror = () => {
+  container.appendChild(placeholder)
+}
+
+
+
+             <img src="${item.imageURL}"
+              onerror="${fallBackImg()}"
+              class="card-img-top" alt=${item.title}>
+```
+
+[Working code for js-img-fall-back](https://stackblitz.com/edit/js-fallback-for-image-d7fsmp?file=index.js)
